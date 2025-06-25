@@ -27,4 +27,3 @@ public class NeutralHostileMobs implements Listener {
         }
     }
 }
-// i don't want to do this anymore

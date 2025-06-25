@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public final class RacesRewrite extends JavaPlugin {
@@ -26,7 +27,7 @@ public final class RacesRewrite extends JavaPlugin {
         // Bukkit tasks
         BukkitTask restoreHungerOnPhotosynthesisTask = new restoreHungerOnPhotosynthesisTask(this).runTaskLater(this, 100L);
         // Other stuff
-        getCommand("racer").setExecutor(new RaceCommand());
+        Objects.requireNonNull(getCommand("race")).setExecutor(new RaceCommand());
         getLogger().info("The plugin has been loaded!");
     }
 
