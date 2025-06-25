@@ -1,0 +1,8 @@
+name: RacesRewrite
+version: '1.0-SNAPSHOT'
+main: net.steppedtax.racesrewrite.RacesRewrite
+api-version: '1.21'
+commands:
+  rrcredits:
+    description: 'Displays credits for Races Rewrite.'
+    usage: /<command>
