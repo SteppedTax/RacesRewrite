@@ -3,7 +3,7 @@ package net.steppedtax.racesrewrite.races.undead;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
-public class BurnUnderSunlight implements World {
+public abstract class BurnUnderSunlight implements World {
 
     @Override
     public long getTime() { // infinite recursion, rewrite this
