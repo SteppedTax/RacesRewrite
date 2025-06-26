@@ -16,7 +16,7 @@ public class StartupCommand implements CommandExecutor {
     // love doing random stuff when I'm bored
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        String formattedArgs = Arrays.toString(args)
+        String formattedArgs = Arrays.toString(args) // Expensive!
                 .replace(",", "")
                 .replace("[", "")
                 .replace("]", "")
@@ -26,8 +26,8 @@ public class StartupCommand implements CommandExecutor {
             sender.sendMessage("Startup message changed to: " + formattedArgs);
         }
         else {
-            String defaultStartupMessage = "The plugin has been loaded!";
-            this.plugin.getConfig().set("startup-message", defaultStartupMessage);
+            final String DEFAULT_STARTUP_MESSAGE = "The plugin has been loaded!";
+            this.plugin.getConfig().set("startup-message", DEFAULT_STARTUP_MESSAGE);
             sender.sendMessage("Startup message reverted to default.");
         }
         this.plugin.saveConfig();
