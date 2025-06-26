@@ -5,4 +5,8 @@ api-version: '1.21.4'
 commands:
   race:
     description: Debug command to change races.
-    usage: "Usage: /<command> [undead|plant|blaze]"
+    usage: "/<command> [undead|plant|blaze]"
+  startupmsg:
+    description: Debug command for config testing, changes the message displayed in server console on startup.
+    usage: "/<command> [args]"
+    default: 1
