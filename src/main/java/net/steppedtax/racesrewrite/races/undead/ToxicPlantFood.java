@@ -1,11 +1,10 @@
 package net.steppedtax.racesrewrite.races.undead;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
-
-import static org.bukkit.Bukkit.getLogger;
 
 public class ToxicPlantFood implements Listener {
 
@@ -14,6 +13,6 @@ public class ToxicPlantFood implements Listener {
     @EventHandler
     public void onItemConsumption(PlayerItemConsumeEvent event) {
         item = event.getItem();
-        getLogger().info(String.valueOf(item));
+        Bukkit.getLogger().info(String.valueOf(item));
     }
 }
