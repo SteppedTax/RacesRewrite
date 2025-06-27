@@ -1,14 +1,11 @@
 name: RacesRewrite
-version: '1.0-SNAPSHOT'
+version: '0.3.0'
 main: net.steppedtax.racesrewrite.RacesRewrite
 api-version: '1.21.4'
 commands:
   race:
     description: Debug command to change races.
-    usage: "Usage: /race [undead|plant|blaze]"
+    usage: "Usage: /race [player] [undead | plant | blaze]"
   startupmsg:
     description: Debug command for config testing, changes the message displayed in server console on startup.
     usage: "Usage: /startupmsg [message]"
-    default: 1
-    aliases:
-      - stmsg

@@ -1,5 +1,7 @@
 package net.steppedtax.racesrewrite.races.undead;
 
+import net.steppedtax.racesrewrite.RacesRewrite;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
@@ -12,8 +14,10 @@ public class NeutralHostileMobs implements Listener {
     @EventHandler
     public void onEntityTarget(EntityTargetEvent event) {
         if (event.getEntity() instanceof Monster) {
-            if (event.getTarget() instanceof Player) {
-                event.setCancelled(true);
+            if (event.getTarget() instanceof Player player) {
+                if (RacesRewrite.undeadPlayers.contains(player.getUniqueId().toString())) {
+                    event.setCancelled(true);
+                }
             }
         }
     }
@@ -23,7 +27,11 @@ public class NeutralHostileMobs implements Listener {
         Entity damager = event.getDamager();
         Entity target = event.getEntity();
         if (damager instanceof Player player) {
-            ((Monster) target).setTarget(player); // this is fucking unreadable but it works
+            if (RacesRewrite.undeadPlayers.contains(player.getUniqueId().toString())) {
+                if (player.getGameMode() == GameMode.SURVIVAL) {
+                    ((Monster) target).setTarget(player); // this is fucking unreadable but it works
+                }
+            }
         }
     }
 }

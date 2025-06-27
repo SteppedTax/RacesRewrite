@@ -1,6 +1,7 @@
 package net.steppedtax.racesrewrite;
 
 import net.steppedtax.racesrewrite.commands.RaceCommand;
+import net.steppedtax.racesrewrite.commands.RaceCommandAutocomplete;
 import net.steppedtax.racesrewrite.commands.StartupCommand;
 import net.steppedtax.racesrewrite.races.undead.BurnUnderSunlight;
 import net.steppedtax.racesrewrite.races.undead.HostileGolems;
@@ -16,9 +17,16 @@ import java.util.Set;
 
 public final class RacesRewrite extends JavaPlugin {
     FileConfiguration config = this.getConfig();
-    public static Set<String> undeadPlayers = new HashSet<>();
-    public static Set<String> plantPlayers = new HashSet<>();
-    public static Set<String> blazePlayers = new HashSet<>();
+    public static Set<String> undeadPlayers = new HashSet<String>();
+    public static Set<String> plantPlayers = new HashSet<String>();
+    public static Set<String> blazePlayers = new HashSet<String>();
+    // public static Set<UUID> humanPlayers = new HashSet<UUID>();
+    public static Set<String> allRacePlayers = new HashSet<String>(); {
+        allRacePlayers.retainAll(undeadPlayers);
+        allRacePlayers.retainAll(plantPlayers);
+        allRacePlayers.retainAll(blazePlayers);
+        // allRacePlayers.retainAll(humanPlayers);
+    }
 
     @Override
     public void onEnable() {
@@ -30,10 +38,13 @@ public final class RacesRewrite extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new NeutralHostileMobs(), this);
         getServer().getPluginManager().registerEvents(new HostileGolems(), this);
         getServer().getPluginManager().registerEvents(new ToxicPlantFood(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         // Bukkit tasks
-        BukkitTask BurnUnderSunlight = new BurnUnderSunlight(this).runTaskLater(this, 60L);
+        BukkitTask AutosaveTask = new AutosaveTask(this).runTaskTimer(this, 600L, 600L);
+        BukkitTask BurnUnderSunlight = new BurnUnderSunlight(this).runTaskTimer(this, 60L, 100L);
         // Other stuff
         Objects.requireNonNull(this.getCommand("race")).setExecutor(new RaceCommand());
+        Objects.requireNonNull(this.getCommand("race")).setTabCompleter(new RaceCommandAutocomplete());
         Objects.requireNonNull(this.getCommand("startupmsg")).setExecutor(new StartupCommand(this));
         String startupMessage = this.getConfig().getString("startup-message");
         this.getLogger().info(startupMessage); // this.shit
@@ -46,13 +57,18 @@ public final class RacesRewrite extends JavaPlugin {
     }
 
     public void savePluginConfig() {
-        this.getConfig().set("undead-players", undeadPlayers);
-        this.getConfig().set("plant-players", plantPlayers);
-        this.getConfig().set("blaze-players", blazePlayers);
+        config.set("undead-players", undeadPlayers.toArray(new String[0]));
+        config.set("plant-players", plantPlayers.toArray(new String[0]));
+        config.set("blaze-players", blazePlayers.toArray(new String[0]));
+        // config.set("human-players", humanPlayers.toArray(new UUID[0]));
         this.saveConfig();
     }
 
     public void loadPluginConfig() {
+        undeadPlayers.addAll(config.getStringList("undead-players"));
+        plantPlayers.addAll(config.getStringList("plant-players"));
+        blazePlayers.addAll(config.getStringList("blaze-players"));
+        // undeadPlayers.addAll(config.get("undead-players"));
         // this.getConfig().getList()
     }
 }
