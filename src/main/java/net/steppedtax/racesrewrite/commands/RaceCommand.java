@@ -10,6 +10,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class RaceCommand implements CommandExecutor {
+    private final RacesRewrite plugin;
+    public RaceCommand(RacesRewrite plugin) {
+        this.plugin = plugin;
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -19,7 +23,7 @@ public class RaceCommand implements CommandExecutor {
                 String targetName = target.getName();
                 String targetID = target.getUniqueId().toString();
                 var race = args[1];
-                RacesRewrite.allRacePlayers.remove(targetID);
+                RacesRewrite.removePlayerRace(targetID);
                 switch (race) {
                     case "undead":
                         sender.sendMessage(targetName + "'s race was set to Undead.");
@@ -35,7 +39,7 @@ public class RaceCommand implements CommandExecutor {
                         break;
                     case "human":
                         sender.sendMessage(targetName + "'s race was set to Human.");
-                        RacesRewrite.allRacePlayers.remove(targetID);
+                        RacesRewrite.removePlayerRace(targetID);
                         break;
                 }
                 return true;

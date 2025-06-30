@@ -39,8 +39,7 @@ public class PlayerJoinListener implements Listener {
                     break;
                 default:
                     Bukkit.getLogger().info(playerName + "was assigned the Human race.");
-                    RacesRewrite.allRacePlayers.remove(playerID);  // same as case 0
-                    // RacesRewrite.humanPlayers.add(playerID);
+                    RacesRewrite.removePlayerRace(playerID);  // same as case 0
                     break;
             }
         }
