@@ -1,5 +1,5 @@
 name: RacesRewrite
-version: '0.4.0'
+version: '0.5.0'
 main: net.steppedtax.racesrewrite.RacesRewrite
 api-version: '1.21.5'
 commands:
