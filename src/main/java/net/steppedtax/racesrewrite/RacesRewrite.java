@@ -3,6 +3,7 @@ package net.steppedtax.racesrewrite;
 import net.steppedtax.racesrewrite.commands.RaceCommand;
 import net.steppedtax.racesrewrite.commands.RaceCommandAutocomplete;
 import net.steppedtax.racesrewrite.commands.StartupCommand;
+import net.steppedtax.racesrewrite.races.plants.listeners.DoubleFireDamage;
 import net.steppedtax.racesrewrite.races.undead.listeners.HostileGolems;
 import net.steppedtax.racesrewrite.races.undead.listeners.NeutralHostileMobs;
 import net.steppedtax.racesrewrite.races.undead.listeners.RegenInDarkness;
@@ -29,10 +30,11 @@ public final class RacesRewrite extends JavaPlugin {
         this.saveDefaultConfig();
         loadPluginConfig();
         // Event listeners
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new NeutralHostileMobs(), this);
         getServer().getPluginManager().registerEvents(new HostileGolems(), this);
         getServer().getPluginManager().registerEvents(new ToxicPlantFood(), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new DoubleFireDamage(), this);
         getServer().getPluginManager().registerEvents(new RegenInDarkness(), this);
         // Bukkit tasks
         BukkitTask AutosaveTask = new AutosaveTask(this).runTaskTimer(this, 600L, 600L);
