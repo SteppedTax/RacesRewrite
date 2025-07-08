@@ -18,7 +18,7 @@ public class RegenInDarkness extends BukkitRunnable {
             if (playerIsValid(player) && playerLightLevel(player) == 0) {
 //                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BREATH, 10, 1);
 //                player.sendMessage("Something wicked this way comes.");
-                PotionEffect regenEffect = new PotionEffect(PotionEffectType.REGENERATION, 3 * 20, 1, false, false);
+                PotionEffect regenEffect = new PotionEffect(PotionEffectType.REGENERATION, 3 * 20, 0, false, false);
                 player.addPotionEffect(regenEffect); // will change later
             }
         }
