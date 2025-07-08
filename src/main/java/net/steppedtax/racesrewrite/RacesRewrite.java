@@ -6,9 +6,9 @@ import net.steppedtax.racesrewrite.commands.StartupCommand;
 import net.steppedtax.racesrewrite.races.plants.listeners.DoubleFireDamage;
 import net.steppedtax.racesrewrite.races.undead.listeners.HostileGolems;
 import net.steppedtax.racesrewrite.races.undead.listeners.NeutralHostileMobs;
-import net.steppedtax.racesrewrite.races.undead.listeners.RegenInDarkness;
 import net.steppedtax.racesrewrite.races.undead.listeners.ToxicPlantFood;
 import net.steppedtax.racesrewrite.races.undead.tasks.BurnUnderSunlight;
+import net.steppedtax.racesrewrite.races.undead.tasks.RegenInDarkness;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -35,10 +35,10 @@ public final class RacesRewrite extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HostileGolems(), this);
         getServer().getPluginManager().registerEvents(new ToxicPlantFood(), this);
         getServer().getPluginManager().registerEvents(new DoubleFireDamage(), this);
-        getServer().getPluginManager().registerEvents(new RegenInDarkness(), this);
         // Bukkit tasks
         BukkitTask AutosaveTask = new AutosaveTask(this).runTaskTimer(this, 600L, 600L);
         BukkitTask BurnUnderSunlight = new BurnUnderSunlight(this).runTaskTimer(this, 60L, 60L);
+        BukkitTask RegenInDarkness = new RegenInDarkness().runTaskTimer(this, 40L, 40L);
         // Other stuff
         Objects.requireNonNull(this.getCommand("race")).setExecutor(new RaceCommand(this));
         Objects.requireNonNull(this.getCommand("race")).setTabCompleter(new RaceCommandAutocomplete(this));
