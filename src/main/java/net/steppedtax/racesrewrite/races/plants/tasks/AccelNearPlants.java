@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccelNearPlants extends BukkitRunnable {
@@ -19,11 +20,15 @@ public class AccelNearPlants extends BukkitRunnable {
         for (Player player : onlinePlayers) {
             if (playerIsPlant(player)) {
                 List<Entity> nearbyEntities = player.getNearbyEntities(8, 8, 8);
+                List<Entity> nearbyPlayers = new ArrayList<>();
 
                 for (Entity entity : nearbyEntities) {
                     if (entity.getType() == EntityType.PLAYER) {
+                        nearbyPlayers.add(entity);
+                        int entityCount = nearbyPlayers.size();
+
                         if (entityIsPlant(entity)) {
-                            PotionEffect speedEffect = new PotionEffect(PotionEffectType.SPEED, 60, 0, false, true);
+                            PotionEffect speedEffect = new PotionEffect(PotionEffectType.SPEED, 60, entityCount, false, true);
                             player.addPotionEffect(speedEffect);
                         }
                     }
