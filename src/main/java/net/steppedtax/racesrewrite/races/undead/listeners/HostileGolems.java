@@ -15,6 +15,7 @@ import java.util.List;
 public class HostileGolems implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
+        // TODO: turn into a task
         Player player = event.getPlayer();
 
         if (playerIsValid(player)) {
