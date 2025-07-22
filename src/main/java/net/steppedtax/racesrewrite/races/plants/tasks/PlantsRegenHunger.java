@@ -20,7 +20,6 @@ public class PlantsRegenHunger extends BukkitRunnable {
                 if (player.getFoodLevel() < 20) {
                     // TODO: We need more feedback for hunger regeneration
                     player.setFoodLevel(player.getFoodLevel() + 1);
-                    player.sendMessage(String.valueOf(player.getFoodLevel()));
                 }
             }
         }
