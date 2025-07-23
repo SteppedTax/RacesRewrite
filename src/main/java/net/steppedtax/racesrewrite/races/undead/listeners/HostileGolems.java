@@ -23,7 +23,8 @@ public class HostileGolems implements Listener {
 
             for (Entity entity : nearbyEntities) {
                 if (entity.getType() == EntityType.IRON_GOLEM) {
-                    if ((((IronGolem) entity).getTarget() == null)) {
+                    // TODO: we need a way to find the closest player
+                    if ((((IronGolem) entity).getTarget() == null || (((IronGolem) entity).getTarget() instanceof Player))) { // this may break stuff
                         ((IronGolem) entity).setTarget(player); // :thumbsup:
                     }
                 }
