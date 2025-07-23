@@ -46,12 +46,11 @@ public class UnequipHeavyArmor implements Listener {
     @EventHandler
     public void onArmorShiftClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
+        ItemStack item = Objects.requireNonNull(event.getCurrentItem());
         if (playerIsPlant(player) && event.getClick().isShiftClick()) {
 //            Bukkit.broadcastMessage(ChatColor.RED + "Shift click!");
-            if (Objects.requireNonNull(event.getClickedInventory()).getType() == InventoryType.PLAYER) {
-//                Bukkit.broadcastMessage(ChatColor.YELLOW + "I-in player?..");
-                if (event.getCurrentItem() != null &! LIGHT_ARMOR.contains(event.getCurrentItem().getType())) {
-//                    Bukkit.broadcastMessage(ChatColor.GREEN + "ooh i came\n");
+            if (event.getSlotType() == InventoryType.SlotType.CONTAINER || event.getSlotType() == InventoryType.SlotType.QUICKBAR) {
+                if (!LIGHT_ARMOR.contains(item.getType()) && EnchantmentTarget.ARMOR.includes(item)) {
                     player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, SoundCategory.PLAYERS, 1, 1);
                     event.setResult(Event.Result.DENY);
                     event.setCancelled(true);
