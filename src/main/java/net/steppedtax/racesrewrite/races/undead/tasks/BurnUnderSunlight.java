@@ -35,13 +35,18 @@ public class BurnUnderSunlight extends BukkitRunnable {
                 if (hasHelmetEquipped(headSlot)) {
                     short durability = getDurability(headSlot);
                     short finalDurability = (short) (durability + durabilityAddend(headSlot));
+                    short maxDurability = (headSlot.getType().getMaxDurability());
+
+                    if (finalDurability >= maxDurability) {
+                        breakHelmet(player);
+                        return;
+                    }
 
                     setDurability(headSlot, finalDurability);
                 }
                 else if (!hasHelmetEquipped(headSlot)) {
                     if (rand.nextInt(128) < 8) {
-                        player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 10, 1);
-                        player.getInventory().setHelmet(null);
+                        breakHelmet(player);
                     }
                 }
             }
@@ -73,6 +78,11 @@ public class BurnUnderSunlight extends BukkitRunnable {
             return player.getGameMode() == GameMode.SURVIVAL; // return true
         }
         return false;
+    }
+
+    private void breakHelmet(Player player) {
+        player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 10, 1);
+        player.getInventory().setHelmet(null);
     }
 
     public short getDurability(ItemStack headSlot) {
