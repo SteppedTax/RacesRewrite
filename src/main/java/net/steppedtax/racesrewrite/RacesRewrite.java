@@ -36,13 +36,6 @@ public final class RacesRewrite extends JavaPlugin {
         this.saveDefaultConfig();
         loadPluginConfig();
         // Event listeners
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        getServer().getPluginManager().registerEvents(new NeutralHostileMobs(), this);
-        getServer().getPluginManager().registerEvents(new HostileGolems(), this);
-        getServer().getPluginManager().registerEvents(new ToxicPlantFood(), this);
-        getServer().getPluginManager().registerEvents(new DoubleFireDamage(), this);
-        getServer().getPluginManager().registerEvents(new UnequipHeavyArmor(), this);
-        getServer().getPluginManager().registerEvents(new FireballThrowListener(), this);
         PluginManager plugman = getServer().getPluginManager();
         plugman.registerEvents(new PlayerJoinListener(), this);
         plugman.registerEvents(new NeutralHostileMobs(), this);
