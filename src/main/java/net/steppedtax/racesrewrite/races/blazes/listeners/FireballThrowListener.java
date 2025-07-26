@@ -24,8 +24,9 @@ public class FireballThrowListener implements Listener {
 
         if (playerIsBlaze(player)) {
             if (event.getAction() == Action.RIGHT_CLICK_AIR) {
-                if (item.getType() == Material.FIRE_CHARGE) {
+                if (item.getType() == Material.FIRE_CHARGE && !player.hasCooldown(Material.FIRE_CHARGE)) {
                     item.setAmount(item.getAmount() - 1);
+                    player.setCooldown(Material.FIRE_CHARGE, 16);
                     player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS, 1, 1);
                     player.launchProjectile(SmallFireball.class);
                 }
