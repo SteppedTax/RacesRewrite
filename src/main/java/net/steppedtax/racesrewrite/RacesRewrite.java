@@ -3,6 +3,7 @@ package net.steppedtax.racesrewrite;
 import net.steppedtax.racesrewrite.commands.RaceCommand;
 import net.steppedtax.racesrewrite.commands.RaceCommandAutocomplete;
 import net.steppedtax.racesrewrite.commands.StartupCommand;
+import net.steppedtax.racesrewrite.races.blazes.listeners.FireballThrowListener;
 import net.steppedtax.racesrewrite.races.plants.listeners.DoubleFireDamage;
 import net.steppedtax.racesrewrite.races.plants.listeners.UnequipHeavyArmor;
 import net.steppedtax.racesrewrite.races.plants.tasks.AccelNearPlants;
@@ -39,6 +40,7 @@ public final class RacesRewrite extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ToxicPlantFood(), this);
         getServer().getPluginManager().registerEvents(new DoubleFireDamage(), this);
         getServer().getPluginManager().registerEvents(new UnequipHeavyArmor(), this);
+        getServer().getPluginManager().registerEvents(new FireballThrowListener(), this);
         // Bukkit tasks
         BukkitTask AutosaveTask = new AutosaveTask(this).runTaskTimer(this, 600L, 600L);
         BukkitTask BurnUnderSunlight = new BurnUnderSunlight(this).runTaskTimer(this, 60L, 60L);
