@@ -15,6 +15,7 @@ import net.steppedtax.racesrewrite.races.undead.listeners.ToxicPlantFood;
 import net.steppedtax.racesrewrite.races.undead.tasks.BurnUnderSunlight;
 import net.steppedtax.racesrewrite.races.undead.tasks.RegenInDarkness;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -42,6 +43,14 @@ public final class RacesRewrite extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DoubleFireDamage(), this);
         getServer().getPluginManager().registerEvents(new UnequipHeavyArmor(), this);
         getServer().getPluginManager().registerEvents(new FireballThrowListener(), this);
+        PluginManager plugman = getServer().getPluginManager();
+        plugman.registerEvents(new PlayerJoinListener(), this);
+        plugman.registerEvents(new NeutralHostileMobs(), this);
+        plugman.registerEvents(new HostileGolems(), this);
+        plugman.registerEvents(new ToxicPlantFood(), this);
+        plugman.registerEvents(new DoubleFireDamage(), this);
+        plugman.registerEvents(new UnequipHeavyArmor(), this);
+        plugman.registerEvents(new FireballThrowListener(), this);
         // Bukkit tasks
         BukkitTask AutosaveTask = new AutosaveTask(this).runTaskTimer(this, 600L, 600L);
         BukkitTask BurnUnderSunlight = new BurnUnderSunlight(this).runTaskTimer(this, 60L, 60L);
