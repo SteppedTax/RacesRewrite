@@ -4,6 +4,7 @@ import net.steppedtax.racesrewrite.commands.RaceCommand;
 import net.steppedtax.racesrewrite.commands.RaceCommandAutocomplete;
 import net.steppedtax.racesrewrite.commands.StartupCommand;
 import net.steppedtax.racesrewrite.races.blazes.listeners.FireballThrowListener;
+import net.steppedtax.racesrewrite.races.blazes.tasks.WaterDamagesPlayer;
 import net.steppedtax.racesrewrite.races.plants.listeners.DoubleFireDamage;
 import net.steppedtax.racesrewrite.races.plants.listeners.UnequipHeavyArmor;
 import net.steppedtax.racesrewrite.races.plants.tasks.AccelNearPlants;
@@ -47,6 +48,7 @@ public final class RacesRewrite extends JavaPlugin {
         BukkitTask RegenInDarkness = new RegenInDarkness().runTaskTimer(this, 40L, 40L);
         BukkitTask PlantsRegenHunger = new PlantsRegenHunger().runTaskTimer(this, 32L, 32L);
         BukkitTask AccelNearPlants = new AccelNearPlants().runTaskTimer(this, 40L, 40L);
+        BukkitTask WaterHurts = new WaterDamagesPlayer().runTaskTimer(this, 25L, 25L);
         // Other stuff
         Objects.requireNonNull(this.getCommand("race")).setExecutor(new RaceCommand(this));
         Objects.requireNonNull(this.getCommand("race")).setTabCompleter(new RaceCommandAutocomplete(this));
