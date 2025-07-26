@@ -13,7 +13,7 @@ public class WaterDamagesPlayer extends BukkitRunnable {
         var onlinePlayers = Bukkit.getOnlinePlayers();
         for (Player player : onlinePlayers) {
             if (playerIsBlaze(player)) {
-                if (isPlayerInWater(player) || isPlayerUnderRain(player)) {
+                if (!isWearingHelmet(player) & isPlayerUnderRain(player) || isPlayerInWater(player)) {
                     damagePlayer(player);
                 }
             }
@@ -27,6 +27,11 @@ public class WaterDamagesPlayer extends BukkitRunnable {
 
     private boolean isPlayerUnderRain(Player player) {
         return player.getLocation().getBlock().getLightFromSky() == 15 && player.getWorld().hasStorm();
+    }
+
+    private boolean isWearingHelmet(Player player) {
+        Material helmet = player.getInventory().getHelmet().getType(); // warning the ide is having an aneurysm
+        return helmet == Material.LEATHER_HELMET;
     }
 
     private void damagePlayer(Player player) {
