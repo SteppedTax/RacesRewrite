@@ -4,6 +4,7 @@ import net.steppedtax.racesrewrite.commands.RaceCommand;
 import net.steppedtax.racesrewrite.commands.RaceCommandAutocomplete;
 import net.steppedtax.racesrewrite.commands.StartupCommand;
 import net.steppedtax.racesrewrite.races.blazes.listeners.FireballThrowListener;
+import net.steppedtax.racesrewrite.races.blazes.listeners.ProtectFromBurning;
 import net.steppedtax.racesrewrite.races.blazes.tasks.WaterDamagesPlayer;
 import net.steppedtax.racesrewrite.races.plants.listeners.DoubleFireDamage;
 import net.steppedtax.racesrewrite.races.plants.listeners.UnequipHeavyArmor;
@@ -44,6 +45,7 @@ public final class RacesRewrite extends JavaPlugin {
         plugman.registerEvents(new DoubleFireDamage(), this);
         plugman.registerEvents(new UnequipHeavyArmor(), this);
         plugman.registerEvents(new FireballThrowListener(), this);
+        plugman.registerEvents(new ProtectFromBurning(), this);
         // Bukkit tasks
         BukkitTask AutosaveTask = new AutosaveTask(this).runTaskTimer(this, 600L, 600L);
         BukkitTask BurnUnderSunlight = new BurnUnderSunlight(this).runTaskTimer(this, 60L, 60L);
